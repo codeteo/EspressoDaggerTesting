@@ -6,12 +6,12 @@ import javax.inject.Inject;
  * Created by css on 2/18/17.
  */
 
-public class MainPresenter implements MainMVP.Presenter {
+public class MainActivityPresenter implements MainMVP.Presenter {
 
     MainMVP.View view;
 
     @Inject
-    public MainPresenter(MainMVP.View view) {
+    public MainActivityPresenter(MainMVP.View view) {
         this.view = view;
     }
 
