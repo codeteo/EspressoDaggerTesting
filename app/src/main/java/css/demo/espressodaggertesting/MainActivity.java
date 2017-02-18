@@ -29,7 +29,8 @@ public class MainActivity extends AppCompatActivity implements MainMVP.View {
                 .build()
                 .inject(this);
 
-//        ((MyApplication) getApplication()).component().inject(this);
+        presenter.getData();
+
 
     }
 
