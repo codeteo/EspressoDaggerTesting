@@ -11,4 +11,6 @@ import dagger.Component;
 @Component( modules = {MainActivityPresenterModule.class})
 public interface MainActivityComponent {
 
+    void inject(MainActivity mainActivity);
+
 }
