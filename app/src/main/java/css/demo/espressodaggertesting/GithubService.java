@@ -1,5 +1,6 @@
 package css.demo.espressodaggertesting;
 
+import css.demo.espressodaggertesting.data.User;
 import retrofit2.Call;
 import retrofit2.http.GET;
 
@@ -10,6 +11,6 @@ import retrofit2.http.GET;
 public interface GithubService {
 
     @GET("users/square")
-    Call<Void> getRepos();
+    Call<User> getRepos();
 
 }

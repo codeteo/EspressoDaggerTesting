@@ -4,6 +4,7 @@ import android.util.Log;
 
 import javax.inject.Inject;
 
+import css.demo.espressodaggertesting.data.User;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -25,9 +26,9 @@ public class MainActivityPresenter implements MainMVP.Presenter {
 
     @Override
     public void getData() {
-        githubService.getRepos().enqueue(new Callback<Void>() {
+        githubService.getRepos().enqueue(new Callback<User>() {
             @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
+            public void onResponse(Call<User> call, Response<User> response) {
                 Log.i("PRESENTER", "onResponse SUCCESS, code : " + response.code());
 
                 if (response.isSuccessful()) {
@@ -37,7 +38,7 @@ public class MainActivityPresenter implements MainMVP.Presenter {
             }
 
             @Override
-            public void onFailure(Call<Void> call, Throwable t) {
+            public void onFailure(Call<User> call, Throwable t) {
 
             }
         });
