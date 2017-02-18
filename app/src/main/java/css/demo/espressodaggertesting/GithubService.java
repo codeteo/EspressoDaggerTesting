@@ -9,7 +9,7 @@ import retrofit2.http.GET;
 
 public interface GithubService {
 
-    @GET("/orgs/octokit/repos")
+    @GET("users/square")
     Call<Void> getRepos();
 
 }

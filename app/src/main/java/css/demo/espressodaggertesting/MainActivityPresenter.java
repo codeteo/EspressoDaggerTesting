@@ -28,7 +28,7 @@ public class MainActivityPresenter implements MainMVP.Presenter {
         githubService.getRepos().enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                Log.i("PRESENTER", "onResponse SUCCESS");
+                Log.i("PRESENTER", "onResponse SUCCESS, code : " + response.code());
 
                 if (response.isSuccessful()) {
                     Log.i("PRESENTER", "onResponse data : " + response.body());

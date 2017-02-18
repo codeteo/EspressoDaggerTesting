@@ -21,7 +21,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class NetworkModule {
 
     private static final long CONNECTION_TIMEOUT = 30L;
-    private static final HttpUrl PRODUCTION_API_BASE_URL = HttpUrl.parse("https://api.github.com");
+    private static final HttpUrl PRODUCTION_API_BASE_URL = HttpUrl.parse("https://api.github.com/");
 
     @Singleton
     @Provides
