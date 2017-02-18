@@ -2,8 +2,9 @@ package css.demo.espressodaggertesting.dagger;
 
 import javax.inject.Singleton;
 
-import css.demo.espressodaggertesting.MainActivity;
 import dagger.Component;
+import okhttp3.OkHttpClient;
+import retrofit2.Retrofit;
 
 /**
  * Created by css on 2/18/17.
@@ -11,5 +12,9 @@ import dagger.Component;
 @Singleton
 @Component(modules = {ApplicationModule.class, NetworkModule.class})
 public interface MainComponent {
-    void inject(MainActivity mainActivity);
+
+    OkHttpClient getOkHttpClient();
+
+    Retrofit getRetrofit();
+
 }
