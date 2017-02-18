@@ -1,7 +1,5 @@
 package css.demo.espressodaggertesting;
 
-import android.util.Log;
-
 import javax.inject.Inject;
 
 import css.demo.espressodaggertesting.data.User;
@@ -29,10 +27,10 @@ public class MainActivityPresenter implements MainMVP.Presenter {
         githubService.getRepos().enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
-                Log.i("PRESENTER", "onResponse SUCCESS, code : " + response.code());
-
                 if (response.isSuccessful()) {
-                    Log.i("PRESENTER", "onResponse data : " + response.body());
+                    if (view != null) {
+                        view.showData(response.body());
+                    }
                 }
 
             }
