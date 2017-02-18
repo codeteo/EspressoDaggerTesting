@@ -29,6 +29,11 @@ public class MainActivityPresenter implements MainMVP.Presenter {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 Log.i("PRESENTER", "onResponse SUCCESS");
+
+                if (response.isSuccessful()) {
+                    Log.i("PRESENTER", "onResponse data : " + response.body());
+                }
+
             }
 
             @Override
