@@ -7,7 +7,7 @@ package css.demo.espressodaggertesting;
 public class MockDemoApplication extends MyApplication {
 
     @Override
-    protected DemoComponent createComponent() {
-        return DaggerMockDemoComponent.builder().build();
+    protected MockMainComponent createComponent() {
+        return DaggerMockMainComponent.builder().build();
     }
 }

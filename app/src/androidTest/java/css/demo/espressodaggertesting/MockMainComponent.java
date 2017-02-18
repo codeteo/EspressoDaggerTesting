@@ -2,6 +2,7 @@ package css.demo.espressodaggertesting;
 
 import javax.inject.Singleton;
 
+import css.demo.espressodaggertesting.dagger.MainComponent;
 import dagger.Component;
 
 /**
@@ -10,7 +11,7 @@ import dagger.Component;
  */
 
 @Singleton
-@Component(modules = MockClockModule.class)
-public interface MockDemoComponent extends DemoComponent {
+@Component(modules = MockNetworkModule.class)
+public interface MockMainComponent extends MainComponent {
     void inject(MainActivityTest mainActivityTest);
 }

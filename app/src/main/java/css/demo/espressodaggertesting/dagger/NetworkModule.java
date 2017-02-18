@@ -41,13 +41,13 @@ public class NetworkModule {
 
     @Provides
     @Singleton
-    HttpUrl providesBaseUrl() {
+    protected HttpUrl providesBaseUrl() {
         return PRODUCTION_API_BASE_URL;
     }
 
     @Provides
     @Singleton
-    Retrofit providesRetrofit(HttpUrl baseUrl, OkHttpClient client) {
+    protected Retrofit providesRetrofit(HttpUrl baseUrl, OkHttpClient client) {
         return new Retrofit.Builder()
                 .client(client)
                 .baseUrl(baseUrl)
