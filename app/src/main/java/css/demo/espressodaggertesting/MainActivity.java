@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MainMVP.View {
 
     private static final String TAG = "MAIN-ACTIVITY";
     public static final String KEY_MILLIS = "millis";
@@ -16,6 +16,11 @@ public class MainActivity extends AppCompatActivity {
         TextView todayView = (TextView) findViewById(R.id.date);
 
         ((MyApplication) getApplication()).component().inject(this);
+
+    }
+
+    @Override
+    public void showData() {
 
     }
 }
