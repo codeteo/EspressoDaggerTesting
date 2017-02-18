@@ -3,16 +3,18 @@ package css.demo.espressodaggertesting;
 import javax.inject.Inject;
 
 /**
- * Created by css on 2/18/17.
+ * Presenter for {@link MainActivity}. Contains View logic and network calls.
  */
 
 public class MainActivityPresenter implements MainMVP.Presenter {
 
-    MainMVP.View view;
+    private MainMVP.View view;
+    private GithubService githubService;
 
     @Inject
-    public MainActivityPresenter(MainMVP.View view) {
+    public MainActivityPresenter(MainMVP.View view, GithubService githubService) {
         this.view = view;
+        this.githubService = githubService;
     }
 
     @Override
