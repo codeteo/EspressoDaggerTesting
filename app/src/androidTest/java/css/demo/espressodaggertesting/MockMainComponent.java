@@ -11,7 +11,6 @@ import dagger.Component;
  */
 
 @Singleton
-@Component(modules = MockNetworkModule.class)
+@Component
 public interface MockMainComponent extends MainComponent {
-    void inject(MainActivityTest mainActivityTest);
 }
