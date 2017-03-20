@@ -24,7 +24,9 @@ final DAGGER_VERSION = '2.8'
 final RUNNER_VERSION = '0.5'
 final ESPRESSO_VERSION = '2.2.2'
 final SUPPORT_VERSION = '25.1.1'
-final RETROFIT = '2.1.0'
+final RETROFIT_VERSION = '2.1.0'
+final RXJAVA_VERSION = '1.2.4'
+final RXANDROID_VERSION = '1.2.1'
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -53,11 +55,16 @@ dependencies {
     compile 'com.squareup.okhttp3:okhttp:3.4.1'
     compile 'com.google.code.gson:gson:2.7'
     compile 'com.squareup:otto:1.3.8'
-    compile "com.squareup.retrofit2:retrofit:${RETROFIT}"
+    compile "com.squareup.retrofit2:retrofit:${RETROFIT_VERSION}"
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     compile 'com.squareup.okhttp3:logging-interceptor:3.5.0'
 
     compile 'com.squareup.picasso:picasso:2.5.2'
+
+    // Rx
+    compile "io.reactivex:rxandroid:${RXANDROID_VERSION}"
+    compile "io.reactivex:rxjava:${RXJAVA_VERSION}"
+    compile "com.squareup.retrofit2:adapter-rxjava:${RETROFIT_VERSION}"
 
 }
 
