@@ -6,7 +6,7 @@ import android.support.annotation.Nullable;
 import static dagger.internal.Preconditions.checkNotNull;
 
 /**
- * Created by css on 2/18/17.
+ * Models User entity.
  */
 
 public final class User {

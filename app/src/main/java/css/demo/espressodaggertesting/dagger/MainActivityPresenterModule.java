@@ -11,7 +11,7 @@ import dagger.Provides;
 @Module
 public class MainActivityPresenterModule {
 
-    MainMVP.View view;
+    private MainMVP.View view;
 
     public MainActivityPresenterModule(MainMVP.View view) {
         this.view = view;

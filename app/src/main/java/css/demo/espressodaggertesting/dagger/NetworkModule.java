@@ -14,7 +14,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * Created by css on 2/18/17.
+ * Dagger Module which provides OkHttp and Retrofit dependencies.
  */
 
 @Module
