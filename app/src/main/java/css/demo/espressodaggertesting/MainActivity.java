@@ -53,4 +53,10 @@ public class MainActivity extends AppCompatActivity implements MainMVP.View {
                 .into(ivAvatar);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        presenter.unSubscribe();
+    }
+
 }

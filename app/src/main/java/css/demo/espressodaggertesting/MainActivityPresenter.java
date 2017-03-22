@@ -4,6 +4,7 @@ import javax.inject.Inject;
 
 import css.demo.espressodaggertesting.data.User;
 import rx.Observer;
+import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -15,7 +16,7 @@ public class MainActivityPresenter implements MainMVP.Presenter {
 
     private MainMVP.View view;
     private GithubService githubService;
-//    private final RxSchedulers rxSchedulers;
+    private Subscription subscription;
 
     @Inject
     MainActivityPresenter(MainMVP.View view, GithubService githubService) {
@@ -25,7 +26,7 @@ public class MainActivityPresenter implements MainMVP.Presenter {
 
     @Override
     public void loadData() {
-        githubService.getRepos()
+        subscription = githubService.getRepos()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<User>() {
@@ -44,6 +45,13 @@ public class MainActivityPresenter implements MainMVP.Presenter {
                         view.showData(user);
                     }
                 });
+
+    }
+
+    public void unSubscribe() {
+        if (subscription != null && !subscription.isUnsubscribed()) {
+            subscription.unsubscribe();
+        }
     }
 
 }
