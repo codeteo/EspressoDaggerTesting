@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements MainMVP.View {
                 .build()
                 .inject(this);
 
-        presenter.getData();
+        presenter.loadData();
 
     }
 

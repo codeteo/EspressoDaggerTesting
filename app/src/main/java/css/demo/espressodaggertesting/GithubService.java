@@ -1,8 +1,8 @@
 package css.demo.espressodaggertesting;
 
 import css.demo.espressodaggertesting.data.User;
-import retrofit2.Call;
 import retrofit2.http.GET;
+import rx.Observable;
 
 /**
  * Retrofit interface to get repos for octokit from Github
@@ -11,6 +11,6 @@ import retrofit2.http.GET;
 public interface GithubService {
 
     @GET("users/square")
-    Call<User> getRepos();
+    Observable<User> getRepos();
 
 }

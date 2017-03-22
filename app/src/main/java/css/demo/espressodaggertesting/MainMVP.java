@@ -16,7 +16,7 @@ public interface MainMVP {
 
     interface Presenter {
 
-        void getData();
+        void loadData();
 
     }
 

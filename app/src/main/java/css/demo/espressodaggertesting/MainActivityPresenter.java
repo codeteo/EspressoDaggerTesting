@@ -15,6 +15,7 @@ public class MainActivityPresenter implements MainMVP.Presenter {
 
     private MainMVP.View view;
     private GithubService githubService;
+//    private final RxSchedulers rxSchedulers;
 
     @Inject
     MainActivityPresenter(MainMVP.View view, GithubService githubService) {
@@ -23,7 +24,7 @@ public class MainActivityPresenter implements MainMVP.Presenter {
     }
 
     @Override
-    public void getData() {
+    public void loadData() {
         githubService.getRepos().enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
