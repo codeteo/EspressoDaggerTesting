@@ -3,9 +3,9 @@ package css.demo.espressodaggertesting;
 import javax.inject.Inject;
 
 import css.demo.espressodaggertesting.data.User;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import rx.Observer;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * Presenter for {@link MainActivity}. Contains View logic and network calls.
@@ -25,21 +25,25 @@ public class MainActivityPresenter implements MainMVP.Presenter {
 
     @Override
     public void loadData() {
-        githubService.getRepos().enqueue(new Callback<User>() {
-            @Override
-            public void onResponse(Call<User> call, Response<User> response) {
-                if (response.isSuccessful()) {
-                    if (view != null) {
-                        view.showData(response.body());
+        githubService.getRepos()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<User>() {
+                    @Override
+                    public void onCompleted() {
+
                     }
-                }
 
-            }
+                    @Override
+                    public void onError(Throwable e) {
 
-            @Override
-            public void onFailure(Call<User> call, Throwable t) {
+                    }
 
-            }
-        });
+                    @Override
+                    public void onNext(User user) {
+                        view.showData(user);
+                    }
+                });
     }
+
 }
