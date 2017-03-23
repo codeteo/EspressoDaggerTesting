@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -51,6 +52,12 @@ public class MainActivity extends AppCompatActivity implements MainMVP.View {
                 .fit()
                 .centerCrop()
                 .into(ivAvatar);
+    }
+
+    @Override
+    public void showError(String errorResponse) {
+        Toast.makeText(MainActivity.this, errorResponse, Toast.LENGTH_SHORT)
+                .show();
     }
 
     @Override

@@ -12,6 +12,8 @@ public interface MainMVP {
 
         void showData(User user);
 
+        void showError(String errorResponse);
+
     }
 
     interface Presenter {
