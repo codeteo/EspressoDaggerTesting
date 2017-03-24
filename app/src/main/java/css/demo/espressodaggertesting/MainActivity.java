@@ -14,6 +14,10 @@ import css.demo.espressodaggertesting.dagger.DaggerMainActivityComponent;
 import css.demo.espressodaggertesting.dagger.MainActivityPresenterModule;
 import css.demo.espressodaggertesting.data.User;
 
+import static css.demo.espressodaggertesting.network.ErrorCode.CODE_401_UNAUTHORIZED;
+import static css.demo.espressodaggertesting.network.ErrorCode.CODE_404_PAGE_NOT_FOUND;
+import static css.demo.espressodaggertesting.network.ErrorCode.CODE_UNKNOWNHOST_EXCEPTION;
+
 public class MainActivity extends AppCompatActivity implements MainMVP.View {
 
     private static final String TAG = "MAIN-ACTIVITY";
@@ -56,7 +60,19 @@ public class MainActivity extends AppCompatActivity implements MainMVP.View {
 
     @Override
     public void showError(String errorResponse) {
-        Toast.makeText(MainActivity.this, errorResponse, Toast.LENGTH_SHORT)
+        String toastResponse = null;
+        switch (errorResponse) {
+            case CODE_401_UNAUTHORIZED :
+                toastResponse = getResources().getString(R.string.unauthorized_request);
+                break;
+            case CODE_404_PAGE_NOT_FOUND :
+                toastResponse = getResources().getString(R.string.page_not_found);
+                break;
+            case CODE_UNKNOWNHOST_EXCEPTION :
+                toastResponse = getResources().getString(R.string.unknown_host);
+                break;
+        }
+        Toast.makeText(MainActivity.this, toastResponse, Toast.LENGTH_SHORT)
                 .show();
     }
 
