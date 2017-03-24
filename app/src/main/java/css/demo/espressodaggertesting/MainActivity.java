@@ -1,6 +1,8 @@
 package css.demo.espressodaggertesting;
 
 import android.os.Bundle;
+import android.support.annotation.VisibleForTesting;
+import android.support.test.espresso.IdlingResource;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -13,6 +15,7 @@ import javax.inject.Inject;
 import css.demo.espressodaggertesting.dagger.DaggerMainActivityComponent;
 import css.demo.espressodaggertesting.dagger.MainActivityPresenterModule;
 import css.demo.espressodaggertesting.data.User;
+import css.demo.espressodaggertesting.utils.EspressoIdlingResource;
 
 import static css.demo.espressodaggertesting.network.ErrorCode.CODE_401_UNAUTHORIZED;
 import static css.demo.espressodaggertesting.network.ErrorCode.CODE_404_PAGE_NOT_FOUND;
@@ -43,12 +46,18 @@ public class MainActivity extends AppCompatActivity implements MainMVP.View {
                 .build()
                 .inject(this);
 
+        // Increment counter used for testing
+        EspressoIdlingResource.increment();
+
         presenter.loadData();
 
     }
 
     @Override
     public void showData(User user) {
+        // decrement counter used for testing
+        EspressoIdlingResource.decrement();
+
         tvName.setText(user.login);
 
         Picasso.with(this)
@@ -60,6 +69,9 @@ public class MainActivity extends AppCompatActivity implements MainMVP.View {
 
     @Override
     public void showError(String errorResponse) {
+        // decrement counter used for testing
+        EspressoIdlingResource.decrement();
+
         String toastResponse = null;
         switch (errorResponse) {
             case CODE_401_UNAUTHORIZED :
@@ -80,6 +92,11 @@ public class MainActivity extends AppCompatActivity implements MainMVP.View {
     protected void onDestroy() {
         super.onDestroy();
         presenter.unSubscribe();
+    }
+
+    @VisibleForTesting
+    public IdlingResource getCountingIdlingResource() {
+        return EspressoIdlingResource.getIdlingResource();
     }
 
 }

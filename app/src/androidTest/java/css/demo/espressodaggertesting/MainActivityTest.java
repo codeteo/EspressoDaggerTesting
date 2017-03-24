@@ -61,6 +61,8 @@ public class MainActivityTest {
         Intent intent = new Intent();
         activityTestRule.launchActivity(intent);
 
+        Espresso.registerIdlingResources(activityTestRule.getActivity().getCountingIdlingResource());
+
         // then
         onView(withId(R.id.tv_name)).check(matches(isDisplayed()));
         onView(withText("square")).check(matches(isDisplayed()));
