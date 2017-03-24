@@ -1,5 +1,7 @@
 package css.demo.espressodaggertesting.dagger;
 
+import android.support.test.espresso.idling.CountingIdlingResource;
+
 import javax.inject.Singleton;
 
 import dagger.Component;
@@ -14,5 +16,7 @@ import retrofit2.Retrofit;
 public interface MainComponent {
 
     Retrofit retrofit();
+
+    CountingIdlingResource countingIdlingResource();
 
 }

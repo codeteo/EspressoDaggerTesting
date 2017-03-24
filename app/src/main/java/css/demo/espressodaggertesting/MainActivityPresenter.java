@@ -1,5 +1,7 @@
 package css.demo.espressodaggertesting;
 
+import android.util.Log;
+
 import java.net.UnknownHostException;
 
 import javax.inject.Inject;
@@ -41,7 +43,6 @@ public class MainActivityPresenter implements MainMVP.Presenter {
                 .subscribe(new Observer<User>() {
                     @Override
                     public void onCompleted() {
-
                     }
 
                     @Override
@@ -67,6 +68,7 @@ public class MainActivityPresenter implements MainMVP.Presenter {
 
                     @Override
                     public void onNext(User user) {
+                        Log.i(TAG, "onNext ");
                         view.showData(user);
                     }
                 });

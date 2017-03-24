@@ -10,7 +10,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "css.demo.espressodaggertesting.MockTestRunner"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -67,6 +67,7 @@ dependencies {
     compile "io.reactivex:rxjava:${RXJAVA_VERSION}"
     compile "com.squareup.retrofit2:adapter-rxjava:${RETROFIT_VERSION}"
 
+    compile 'com.android.support.test.espresso:espresso-idling-resource:2.2.2'
 }
 
 

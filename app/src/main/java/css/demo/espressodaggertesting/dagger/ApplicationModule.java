@@ -1,6 +1,7 @@
 package css.demo.espressodaggertesting.dagger;
 
 import android.app.Application;
+import android.support.test.espresso.idling.CountingIdlingResource;
 
 import javax.inject.Singleton;
 
@@ -24,6 +25,12 @@ public class ApplicationModule {
     @Singleton
     Application providesApplication() {
         return application;
+    }
+
+    @Provides
+    @Singleton
+    public static CountingIdlingResource providesCountingIdlingResource() {
+        return new CountingIdlingResource("CountingIdlingResource");
     }
 
 }

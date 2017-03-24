@@ -5,6 +5,7 @@
     <string name="unauthorized_request">Unauthorized Request.Try login again.</string>
     <string name="page_not_found">Page not found error</string>
     <string name="unknown_host">Your internet connection is down. Try to reconnect</string>
+    <string name="avatar">Avatar</string>
     <!-- network errors responses end-->
 
 </resources>

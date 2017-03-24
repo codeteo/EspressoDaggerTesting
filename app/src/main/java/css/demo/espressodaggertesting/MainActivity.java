@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements MainMVP.View {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        tvName = (TextView) findViewById(R.id.name);
+        tvName = (TextView) findViewById(R.id.tv_name);
         ivAvatar = (ImageView) findViewById(R.id.iv_avatar);
 
         DaggerMainActivityComponent.builder()
