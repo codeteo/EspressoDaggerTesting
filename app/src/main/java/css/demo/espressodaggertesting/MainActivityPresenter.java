@@ -1,7 +1,5 @@
 package css.demo.espressodaggertesting;
 
-import android.util.Log;
-
 import java.net.UnknownHostException;
 
 import javax.inject.Inject;
@@ -51,8 +49,6 @@ public class MainActivityPresenter implements MainMVP.Presenter {
                         if (e instanceof HttpException) {
                             int code = ((HttpException) e).code();
 
-                            Log.i(TAG, "onError : " + code);
-
                             switch (code) {
                                 case 404 :
                                     handleError(CODE_404_PAGE_NOT_FOUND);
@@ -61,7 +57,6 @@ public class MainActivityPresenter implements MainMVP.Presenter {
                                     handleError(CODE_401_UNAUTHORIZED);
                                     break;
                             }
-
                         }
 
                         if (e instanceof UnknownHostException) {
@@ -81,13 +76,13 @@ public class MainActivityPresenter implements MainMVP.Presenter {
     private void handleError(String errorCode) {
         switch (errorCode) {
             case CODE_404_PAGE_NOT_FOUND:
-                view.showError("Page Not Found error");
+                view.showError(CODE_404_PAGE_NOT_FOUND);
                 break;
             case CODE_401_UNAUTHORIZED:
-                view.showError("UnAuthorized Request. Login and try again.");
+                view.showError(CODE_401_UNAUTHORIZED);
                 break;
             case CODE_UNKNOWNHOST_EXCEPTION:
-                view.showError("Network error. Maybe your internet connection is off?");
+                view.showError(CODE_UNKNOWNHOST_EXCEPTION);
                 break;
             default:
                 view.showError("Generic error");
