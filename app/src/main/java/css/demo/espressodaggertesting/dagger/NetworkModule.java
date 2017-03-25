@@ -6,7 +6,6 @@ import java.util.concurrent.TimeUnit;
 
 import javax.inject.Singleton;
 
-import css.demo.espressodaggertesting.Constants;
 import dagger.Module;
 import dagger.Provides;
 import okhttp3.HttpUrl;
@@ -22,10 +21,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 @Module
-class NetworkModule {
+public class NetworkModule {
 
     private static final long CONNECTION_TIMEOUT = 30L;
-    private static final HttpUrl PRODUCTION_API_BASE_URL = HttpUrl.parse(Constants.BASE_URL);
+//    private static final HttpUrl PRODUCTION_API_BASE_URL = HttpUrl.parse(Constants.BASE_URL);
 
     @Singleton
     @Provides
@@ -45,12 +44,6 @@ class NetworkModule {
         client.addInterceptor(logging);
 
         return client.build();
-    }
-
-    @Provides
-    @Singleton
-    HttpUrl providesBaseUrl() {
-        return PRODUCTION_API_BASE_URL;
     }
 
     @Provides

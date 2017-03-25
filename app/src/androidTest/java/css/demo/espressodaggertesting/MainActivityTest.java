@@ -18,6 +18,7 @@ import css.demo.espressodaggertesting.helpers.TestServiceHelper;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 
+import static android.support.test.InstrumentationRegistry.getInstrumentation;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
@@ -31,6 +32,9 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 @RunWith(AndroidJUnit4.class)
 public class MainActivityTest {
 
+    MyApplication application;
+
+
     @Rule
     public ActivityTestRule<MainActivity> activityTestRule =
             new ActivityTestRule<>(MainActivity.class, true, false);
@@ -39,6 +43,16 @@ public class MainActivityTest {
 
     @Before
     public void setUp() throws Exception {
+        application = (MyApplication) getInstrumentation().getTargetContext().getApplicationContext();
+
+        /*
+        DaggerMainComponent mainComponent = new DaggerMainComponent.Builder()
+                .networkModule(new MockNetworkModule())
+                .build();
+
+        application.
+        */
+
         MockitoAnnotations.initMocks(this);
         server = new MockWebServer();
         server.start();
@@ -47,6 +61,7 @@ public class MainActivityTest {
         Constants.BASE_URL = server.url("/").toString();
 
         Espresso.registerIdlingResources(new BetterIdlingResource());
+//        Espresso.registerIdlingResources(activityTestRule.getActivity().getCountingIdlingResource());
     }
 
     @Test
@@ -72,5 +87,16 @@ public class MainActivityTest {
     public void tearDown() throws Exception {
         server.shutdown();
     }
+
+/*
+    public class MockNetworkModule extends NetworkModule {
+        private final HttpUrl TESTING_API_BASE_URL = HttpUrl.parse("/");
+
+        @Override
+        protected HttpUrl providesBaseUrl() {
+            return TESTING_API_BASE_URL;
+        }
+    }
+*/
 
 }

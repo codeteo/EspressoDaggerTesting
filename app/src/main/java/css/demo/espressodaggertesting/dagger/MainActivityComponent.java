@@ -8,7 +8,7 @@ import dagger.Component;
  */
 
 @ActivityScope
-@Component(dependencies = MainComponent.class,
+@Component(dependencies = ApplicationComponent.class,
         modules = {MainActivityPresenterModule.class, GithubServiceModule.class})
 public interface MainActivityComponent {
 

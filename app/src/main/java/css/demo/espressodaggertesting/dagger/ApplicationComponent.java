@@ -5,6 +5,7 @@ import android.support.test.espresso.idling.CountingIdlingResource;
 import javax.inject.Singleton;
 
 import dagger.Component;
+import okhttp3.HttpUrl;
 import retrofit2.Retrofit;
 
 /**
@@ -13,10 +14,12 @@ import retrofit2.Retrofit;
  */
 @Singleton
 @Component(modules = {ApplicationModule.class, NetworkModule.class})
-public interface MainComponent {
+public interface ApplicationComponent {
 
     Retrofit retrofit();
 
     CountingIdlingResource countingIdlingResource();
+
+    HttpUrl baseHttpUrl();
 
 }

@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements MainMVP.View {
 
         DaggerMainActivityComponent.builder()
                 .mainActivityPresenterModule(new MainActivityPresenterModule(this))
-                .mainComponent(((MyApplication) getApplication()).component())
+                .applicationComponent(((MyApplication) getApplication()).component())
                 .build()
                 .inject(this);
 
