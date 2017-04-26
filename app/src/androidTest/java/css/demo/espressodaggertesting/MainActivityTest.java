@@ -2,7 +2,6 @@ package css.demo.espressodaggertesting;
 
 import android.content.Intent;
 import android.support.test.InstrumentationRegistry;
-import android.support.test.espresso.Espresso;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
@@ -13,8 +12,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.MockitoAnnotations;
 
-import css.demo.espressodaggertesting.helpers.BetterIdlingResource;
 import css.demo.espressodaggertesting.helpers.TestServiceHelper;
+import css.demo.espressodaggertesting.util.MockWebServerHelper;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 
@@ -40,19 +39,16 @@ public class MainActivityTest {
             new ActivityTestRule<>(MainActivity.class, true, false);
 
     private MockWebServer server;
+    private final MockWebServerHelper mockWebServerHelper = new MockWebServerHelper();
 
     @Before
     public void setUp() throws Exception {
         application = (MyApplication) getInstrumentation().getTargetContext().getApplicationContext();
 
         MockitoAnnotations.initMocks(this);
-        server = new MockWebServer();
-        server.start();
+        server = mockWebServerHelper.initMockWebServer();
 
-        // changes base url - to avoid undesirable network calls
-        server.url("/").toString();
-
-        Espresso.registerIdlingResources(new BetterIdlingResource());
+//        Espresso.registerIdlingResources(new BetterIdlingResource());
     }
 
     @Test
@@ -67,7 +63,7 @@ public class MainActivityTest {
         Intent intent = new Intent();
         activityTestRule.launchActivity(intent);
 
-        Espresso.registerIdlingResources(activityTestRule.getActivity().getCountingIdlingResource());
+//        Espresso.registerIdlingResources(activityTestRule.getActivity().getCountingIdlingResource());
 
         // then
         onView(withId(R.id.tv_name)).check(matches(isDisplayed()));
