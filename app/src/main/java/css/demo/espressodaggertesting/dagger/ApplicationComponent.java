@@ -1,11 +1,9 @@
 package css.demo.espressodaggertesting.dagger;
 
-import android.support.test.espresso.idling.CountingIdlingResource;
-
 import javax.inject.Singleton;
 
+import css.demo.espressodaggertesting.utils.BaseUrlInterceptor;
 import dagger.Component;
-import okhttp3.HttpUrl;
 import retrofit2.Retrofit;
 
 /**
@@ -18,8 +16,6 @@ public interface ApplicationComponent {
 
     Retrofit retrofit();
 
-    CountingIdlingResource countingIdlingResource();
-
-    HttpUrl baseHttpUrl();
+    BaseUrlInterceptor baseUrlInterceptor();
 
 }

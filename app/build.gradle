@@ -18,6 +18,30 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    productFlavors {
+        mock {
+
+        }
+        prod {
+
+        }
+    }
+
+    sourceSets {
+
+        def HELPERS_SHARED_ACROSS_ALL_TESTS = 'src/testHelpers/java'
+        def RESOURCES_SHARED_ACROSS_ALL_TESTS = 'src/testHelpers/resources'
+
+        // Test related source sets
+        test.java.srcDirs += [HELPERS_SHARED_ACROSS_ALL_TESTS]
+        test.resources.srcDirs += [RESOURCES_SHARED_ACROSS_ALL_TESTS]
+
+        // Espresso test related source sets
+        androidTest.java.srcDirs += [HELPERS_SHARED_ACROSS_ALL_TESTS]
+        androidTest.resources.srcDirs += [RESOURCES_SHARED_ACROSS_ALL_TESTS]
+
+    }
+
 }
 
 final DAGGER_VERSION = '2.8'
@@ -34,6 +58,7 @@ dependencies {
     testCompile 'junit:junit:4.12'
     testCompile 'org.mockito:mockito-core:2.7.19'
     androidTestCompile 'com.squareup.okhttp3:mockwebserver:3.5.0'
+    testCompile 'com.squareup.okhttp3:mockwebserver:3.5.0'
 
     compile "com.google.dagger:dagger:${DAGGER_VERSION}"
     annotationProcessor "com.google.dagger:dagger-compiler:${DAGGER_VERSION}"

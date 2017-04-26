@@ -6,6 +6,8 @@ import java.util.concurrent.TimeUnit;
 
 import javax.inject.Singleton;
 
+import css.demo.espressodaggertesting.Constants;
+import css.demo.espressodaggertesting.utils.BaseUrlInterceptor;
 import dagger.Module;
 import dagger.Provides;
 import okhttp3.HttpUrl;
@@ -24,7 +26,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class NetworkModule {
 
     private static final long CONNECTION_TIMEOUT = 30L;
-//    private static final HttpUrl PRODUCTION_API_BASE_URL = HttpUrl.parse(Constants.BASE_URL);
 
     @Singleton
     @Provides
@@ -34,7 +35,7 @@ public class NetworkModule {
 
     @Singleton
     @Provides
-    protected OkHttpClient providesOkHttpClient(){
+    protected OkHttpClient providesOkHttpClient(BaseUrlInterceptor baseUrlInterceptor){
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         logging.setLevel(Level.BODY);
 
@@ -42,6 +43,7 @@ public class NetworkModule {
         client.retryOnConnectionFailure(true);
         client.connectTimeout(CONNECTION_TIMEOUT, TimeUnit.SECONDS);
         client.addInterceptor(logging);
+        client.addInterceptor(baseUrlInterceptor);
 
         return client.build();
     }
@@ -56,5 +58,14 @@ public class NetworkModule {
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
     }
+
+
+    @Provides
+    @Singleton
+//    @ForTestingPurposes
+    static BaseUrlInterceptor providesBaseUrlInterceptor() {
+        return new BaseUrlInterceptor(Constants.BASE_URL);
+    }
+
 
 }

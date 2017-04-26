@@ -45,23 +45,14 @@ public class MainActivityTest {
     public void setUp() throws Exception {
         application = (MyApplication) getInstrumentation().getTargetContext().getApplicationContext();
 
-        /*
-        DaggerMainComponent mainComponent = new DaggerMainComponent.Builder()
-                .networkModule(new MockNetworkModule())
-                .build();
-
-        application.
-        */
-
         MockitoAnnotations.initMocks(this);
         server = new MockWebServer();
         server.start();
 
         // changes base url - to avoid undesirable network calls
-        Constants.BASE_URL = server.url("/").toString();
+        server.url("/").toString();
 
         Espresso.registerIdlingResources(new BetterIdlingResource());
-//        Espresso.registerIdlingResources(activityTestRule.getActivity().getCountingIdlingResource());
     }
 
     @Test
@@ -87,16 +78,5 @@ public class MainActivityTest {
     public void tearDown() throws Exception {
         server.shutdown();
     }
-
-/*
-    public class MockNetworkModule extends NetworkModule {
-        private final HttpUrl TESTING_API_BASE_URL = HttpUrl.parse("/");
-
-        @Override
-        protected HttpUrl providesBaseUrl() {
-            return TESTING_API_BASE_URL;
-        }
-    }
-*/
 
 }

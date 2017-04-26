@@ -12,7 +12,13 @@ import css.demo.espressodaggertesting.dagger.DaggerApplicationComponent;
 
 public class MyApplication extends Application {
 
-    private final ApplicationComponent demoComponent = createComponent();
+    private static ApplicationComponent demoComponent;
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        demoComponent = createComponent();
+    }
 
     protected ApplicationComponent createComponent() {
         return DaggerApplicationComponent.builder()
@@ -20,7 +26,7 @@ public class MyApplication extends Application {
                 .build();
     }
 
-    public ApplicationComponent component() {
+    public static ApplicationComponent component() {
         return demoComponent;
     }
 
